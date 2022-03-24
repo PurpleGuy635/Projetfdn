@@ -1,3 +1,5 @@
-void main(List<String> arguments) {
-  print('salut!');
+import 'ihm_principale.dart';
+
+void main(List<String> arguments) async {
+  IHMprincipale.titre();
 }
