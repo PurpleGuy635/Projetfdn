@@ -1,5 +1,5 @@
 class IHMAuteur {
-  static void affichemenu() {
+  static Future<void> affichemenu() async {
     print("--------------------------------");
     print("menu gestion de la table Auteur");
     print("");
