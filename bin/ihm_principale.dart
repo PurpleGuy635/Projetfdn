@@ -32,15 +32,13 @@ class IHMprincipale {
       print("2- Gestion de la table Editeur");
       print("3- Gestion de la table Auteur");
       print("0- Quitter");
-      choix = IHMprincipale.choixMenu(3);
+      choix = IHMprincipale.choixMenu(4);
       print("--------------------------------------------------");
       if (choix == 1) {
-        await IHMprincipale.menuBDD();
-      } else if (choix == 2) {
         await IHMProduit.affichemenu();
-      } else if (choix == 3) {
+      } else if (choix == 2) {
         await IHMEditeur.affichemenu();
-      } else if (choix == 4) {
+      } else if (choix == 3) {
         await IHMAuteur.affichemenu();
       }
     }
