@@ -22,6 +22,27 @@ class IHMprincipale {
     print("--------------------------------------------------");
   }
 
+  //C'est une méthode de sasisie
+  //elle retourne un chiffre choisie entre le chiffre 0 et le chiffre choisie
+  static int choixMenu(int nbChoix) {
+    bool saisieValide = false;
+    int i = -1;
+    while (!saisieValide) {
+      print("> Veuillez saisir une action (0-$nbChoix)");
+      try {
+        i = int.parse(stdin.readLineSync().toString());
+        if (i >= 0 && i <= nbChoix) {
+          saisieValide = true;
+        } else {
+          print("La saisie ne correspond à aucune action.");
+        }
+      } catch (e) {
+        print("Erreur dans la saisie.");
+      }
+    }
+    return i;
+  }
+
   // methode des menus et actions
   // menu d'accueil
   static Future<int> menu() async {
@@ -32,7 +53,7 @@ class IHMprincipale {
       print("2- Gestion de la table Editeur");
       print("3- Gestion de la table Auteur");
       print("0- Quitter");
-      choix = IHMprincipale.choixMenu(4);
+      choix = IHMprincipale.choixMenu(3);
       print("--------------------------------------------------");
       if (choix == 1) {
         await IHMProduit.affichemenu();
