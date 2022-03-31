@@ -3,6 +3,7 @@ import 'dart:io';
 import 'ihm_auteur.dart';
 import 'ihm_produit.dart';
 import 'imh_editeur.dart';
+import 'ihm_table.dart';
 
 class IHMprincipale {
   static void titre() {
@@ -51,15 +52,18 @@ class IHMprincipale {
       print("Menu Principal");
       print("1- Gestion de la table Produit");
       print("2- Gestion de la table Editeur");
-      print("3- Gestion de la table Auteur");
+      print("3- Gestion de la table table");
+      print("4- Gestion de la table Auteur");
       print("0- Quitter");
-      choix = IHMprincipale.choixMenu(3);
+      choix = IHMprincipale.choixMenu(5);
       print("--------------------------------------------------");
       if (choix == 1) {
         await IHMProduit.affichemenu();
       } else if (choix == 2) {
         await IHMEditeur.affichemenu();
       } else if (choix == 3) {
+        await IHMTable.affichemenu();
+      } else if (choix == 4) {
         await IHMAuteur.affichemenu();
       }
     }
