@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:mysql1/mysql1.dart';
+// import 'package:mysql1/mysql1.dart';
 
 import 'ihm_auteur.dart';
 import 'ihm_produit.dart';
@@ -101,23 +101,23 @@ class IHMprincipale {
 
  // methode des menus et actions
   // menu setting
-  static ConnectionSettings setting() {
-    String bdd = IHMprincipale.saisieString("le nom de la BDD");
-    String user = IHMprincipale.saisieString("l'utilisateur");
-    String mdp = IHMprincipale.saisieMDP();
+  // static ConnectionSettings setting() {
+  //   String bdd = IHMprincipale.saisieString("le nom de la BDD");
+  //   String user = IHMprincipale.saisieString("l'utilisateur");
+  //   String mdp = IHMprincipale.saisieMDP();
 
-    return ConnectionSettings(
-      host: 'localhost',
-      port: 3306,
-      user: user, // DartUser
-      password: mdp, // dartmdp
-      db: bdd, // DartDB
-    );
-  }
+  //   return ConnectionSettings(
+  //     host: 'localhost',
+  //     port: 3306,
+  //     user: user, // DartUser
+  //     password: mdp, // dartmdp
+  //     db: bdd, // DartDB
+  //   );
+  // }
 
   // methode des menus et actions
   // menu d'accueil
-  static Future<int> menu(ConnectionSettings settings) async {
+  static Future<int> menu() async {
     int choix = -1;
     while (choix != 0) {
       print("Menu Principal");
