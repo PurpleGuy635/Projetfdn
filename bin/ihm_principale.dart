@@ -115,6 +115,26 @@ class IHMprincipale {
     return i;
   }
 
+    // retourne un int pour saisie d'entier positif
+  static int saisieID() {
+    bool saisieValide = false;
+    int i = -1;
+    while (!saisieValide) {
+      print("> Veuillez saisir l'id correspondant:");
+      try {
+        i = int.parse(stdin.readLineSync().toString());
+        if (i > 0) {
+          saisieValide = true;
+        } else {
+          print("La valeur saisie est inférieur ou égale à zéro.");
+        }
+      } catch (e) {
+        print("Erreur dans la saisie.");
+      }
+    }
+    return i;
+  }
+
  // methode des menus et actions
   // menu setting
   // static ConnectionSettings setting() {
