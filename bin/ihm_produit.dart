@@ -74,4 +74,59 @@ class IHMProduit {
     print("--------------------------------------------------");
     await Future.delayed(Duration(seconds: 1));
   }
+
+  static Future<void> updateProduit() async {
+    print("Quelle Etudiant voulez vous mettre à jour ?");
+    int id = IHMprincipale.saisieID();
+    //if (await DBProduit.exist(id)) {
+    if (id != 635) {
+      String nom = IHMprincipale.saisieString("nom");
+      String email = IHMprincipale.saisieString("email");
+      int age = IHMprincipale.saisieInt();
+      if (IHMprincipale.confirmation()) {
+        //await DBEtudiant.updateEtudiant(id, nom, email, age);
+        print("Produit $id mis à jour.");
+        print("--------------------------------------------------");
+      } else {
+        print("Annulation de l'opération.");
+        print("--------------------------------------------------");
+      }
+      await Future.delayed(Duration(seconds: 1));
+    } else {
+      print("Le Produit $id n'existe pas");
+      print("Fin de l'opération.");
+      print("--------------------------------------------------");
+      await Future.delayed(Duration(seconds: 1));
+    }
+  }
+
+  static Future<void> deleteProduit() async {
+    print("Quelle Etudiant voulez vous supprimer ?");
+    int id = IHMprincipale.saisieID();
+    if (IHMprincipale.confirmation()) {
+      //DBEtudiant.deleteEtudiant(id);
+      print("Etudiant $id supprimé.");
+      print("Fin de l'opération.");
+      print("--------------------------------------------------");
+      await Future.delayed(Duration(seconds: 1));
+    } else {
+      print("Annulation de l'opération.");
+      print("--------------------------------------------------");
+      await Future.delayed(Duration(seconds: 1));
+    }
+  }
+
+  static Future<void> deleteAllProduit() async {
+    if (IHMprincipale.confirmation()) {
+      //DBEtudiant.deleteAllEtudiant();
+      print("Tables supprimées.");
+      print("Fin de l'opération.");
+      print("--------------------------------------------------");
+      await Future.delayed(Duration(seconds: 1));
+    } else {
+      print("Annulation de l'opération.");
+      print("--------------------------------------------------");
+      await Future.delayed(Duration(seconds: 1));
+    }
+  }
 }
