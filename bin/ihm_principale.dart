@@ -99,6 +99,22 @@ class IHMprincipale {
     return s;
   }
 
+  // retourne un int pour saisie d'entier positif
+  static int saisieInt() {
+    bool saisieValide = false;
+    int i = -1;
+    while (!saisieValide) {
+      print("> Veuillez saisir un entier :");
+      try {
+        i = int.parse(stdin.readLineSync().toString());
+        saisieValide = true;
+      } catch (e) {
+        print("Erreur dans la saisie.");
+      }
+    }
+    return i;
+  }
+
  // methode des menus et actions
   // menu setting
   // static ConnectionSettings setting() {
