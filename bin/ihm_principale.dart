@@ -52,8 +52,8 @@ class IHMprincipale {
       print("Menu Principal");
       print("1- Gestion de la table Produit");
       print("2- Gestion de la table Editeur");
-      print("3- Gestion de la table table");
-      print("4- Gestion de la table Auteur");
+      print("3- Gestion de la table Auteur");
+      print("4- Gestion des tables");
       print("0- Quitter");
       choix = IHMprincipale.choixMenu(5);
       print("--------------------------------------------------");
@@ -62,9 +62,9 @@ class IHMprincipale {
       } else if (choix == 2) {
         await IHMEditeur.affichemenu();
       } else if (choix == 3) {
-        await IHMTable.affichemenu();
-      } else if (choix == 4) {
         await IHMAuteur.affichemenu();
+      } else if (choix == 4) {
+        await IHMTable.affichemenu();
       }
     }
     return 0;
