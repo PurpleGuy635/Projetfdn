@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:mysql1/mysql1.dart';
+import 'db_config.dart';
 import 'produit.dart';
 
 class DBProduit {

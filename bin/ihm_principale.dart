@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:mysql1/mysql1.dart';
 
+import 'db_config.dart';
 import 'ihm_auteur.dart';
 import 'ihm_produit.dart';
 import 'imh_editeur.dart';
@@ -277,4 +278,4 @@ class IHMprincipale {
 
 class ConnectionSettings {
 }
-}
+
