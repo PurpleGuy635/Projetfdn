@@ -276,6 +276,5 @@ class IHMprincipale {
   static void wait() {}
 }
 
-class ConnectionSettings {
-}
+
 
