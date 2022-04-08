@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:mysql1/mysql1.dart';
-import 'db_config.dart';
 import 'produit.dart';
 
 class DBProduit {
@@ -33,5 +32,29 @@ class DBProduit {
       log(e.toString());
     }
     return pro;
+  }
+
+  static Future<List<Produit>> selectAllProduit(
+      ConnectionSettings settings) async {
+    List<Produit> listePro = [];
+    try {
+      MySqlConnection conn = await MySqlConnection.connect(settings);
+      try {
+        String requete = "SELECT * FROM Produit;";
+        Results reponse = await conn.query(requete);
+        for (var row in reponse) {
+          Produit pro = Produit(row['id'], row['nom'], row['stock'],
+              row['dateParution'], row['type'], row['prix'], row['idEditeur']);
+          listePro.add(pro);
+        }
+      } catch (e) {
+        log(e.toString());
+      }
+      conn.close();
+    } catch (e) {
+      log(e.toString());
+    }
+
+    return listePro;
   }
 }

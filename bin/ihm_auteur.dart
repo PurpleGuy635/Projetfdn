@@ -1,11 +1,13 @@
+import 'package:mysql1/mysql1.dart';
+
 import 'ihm_principale.dart';
 
 class IHMAuteur {
-  static Future<void> affichemenu() async {
+  static Future<void> affichemenu(ConnectionSettings settings) async {
     int choix = -1;
     while (choix != 0) {
       print("--------------------------------");
-      print("menu gestion de la table Editeur");
+      print("menu gestion de la table Autheur");
       print("");
       print("+-------------------------------+");
       print("| 1 - consulter la table        |");
@@ -21,15 +23,15 @@ class IHMAuteur {
       print("--------------------------------");
 
       if (choix == 1) {
-        await IHMAuteur.menuSelectEdi();
+        await IHMAuteur.menuSelectAut();
       } else if (choix == 2) {
-        await IHMAuteur.updateEditeur();
+        await IHMAuteur.updateAuteur();
       } else if (choix == 3) {
-        await IHMAuteur.insertEditeur();
+        await IHMAuteur.insertAuteur();
       } else if (choix == 4) {
-        await IHMAuteur.deleteEditeur();
+        await IHMAuteur.deleteAuteur();
       } else if (choix == 5) {
-        await IHMAuteur.deleteAllEditeur();
+        await IHMAuteur.deleteAllAuteur();
       }
     }
     print("Menu précédént");
@@ -37,7 +39,7 @@ class IHMAuteur {
     await Future.delayed(Duration(seconds: 1));
   }
 
-  static Future<void> menuSelectEdi() async {
+  static Future<void> menuSelectAut() async {
     int choix = -1;
     while (choix != 0) {
       print("Menu - Select Produits");
@@ -58,7 +60,7 @@ class IHMAuteur {
     await Future.delayed(Duration(seconds: 1));
   }
 
-  static Future<void> insertEditeur() async {
+  static Future<void> insertAuteur() async {
     //String nom = IHMprincipale.saisieString();
     //String email = IHMprincipale.saisieString();
     //int age = IHMprincipale.saisieInt();
@@ -75,7 +77,7 @@ class IHMAuteur {
     await Future.delayed(Duration(seconds: 1));
   }
 
-  static Future<void> updateEditeur() async {
+  static Future<void> updateAuteur() async {
     print("Quelle Etudiant voulez vous mettre à jour ?");
     int id = IHMprincipale.saisieID();
     //if (await DBProduit.exist(id)) {
@@ -100,7 +102,7 @@ class IHMAuteur {
     }
   }
 
-  static Future<void> deleteEditeur() async {
+  static Future<void> deleteAuteur() async {
     print("Quelle Etudiant voulez vous supprimer ?");
     int id = IHMprincipale.saisieID();
     if (IHMprincipale.confirmation()) {
@@ -116,7 +118,7 @@ class IHMAuteur {
     }
   }
 
-  static Future<void> deleteAllEditeur() async {
+  static Future<void> deleteAllAuteur() async {
     if (IHMprincipale.confirmation()) {
       //DBEtudiant.deleteAllEtudiant();
       print("Tables supprimées.");

@@ -1,7 +1,11 @@
+import 'package:mysql1/mysql1.dart';
+
+import 'db_produit.dart';
 import 'ihm_principale.dart';
+import 'produit.dart';
 
 class IHMProduit {
-  static Future<void> affichemenu() async {
+  static Future<void> affichemenu(ConnectionSettings settings) async {
     int choix = -1;
     while (choix != 0) {
       print("--------------------------------");
@@ -21,15 +25,15 @@ class IHMProduit {
       print("--------------------------------");
 
       if (choix == 1) {
-        await IHMProduit.menuSelectPro();
+        await IHMProduit.menuSelectPro(settings);
       } else if (choix == 2) {
-        await IHMProduit.updateProduit();
+        await IHMProduit.updateProduit(settings);
       } else if (choix == 3) {
-        await IHMProduit.insertProduit();
+        await IHMProduit.insertProduit(settings);
       } else if (choix == 4) {
-        await IHMProduit.deleteProduit();
+        await IHMProduit.deleteProduit(settings);
       } else if (choix == 5) {
-        await IHMProduit.deleteAllProduit();
+        await IHMProduit.deleteAllProduit(settings);
       }
     }
     print("Menu précédént");
@@ -37,7 +41,7 @@ class IHMProduit {
     await Future.delayed(Duration(seconds: 1));
   }
 
-  static Future<void> menuSelectPro() async {
+  static Future<void> menuSelectPro(ConnectionSettings settings) async {
     int choix = -1;
     while (choix != 0) {
       print("Menu - Select Produits");
@@ -49,6 +53,7 @@ class IHMProduit {
 
       if (choix == 1) {
         //await IHMEtudiants.selectEtudiant();
+        await IHMProduit.selectProduit(settings);
       } else if (choix == 2) {
         //await IHMEtudiants.selectAllEtudiants();
       }
@@ -58,7 +63,7 @@ class IHMProduit {
     await Future.delayed(Duration(seconds: 1));
   }
 
-  static Future<void> insertProduit() async {
+  static Future<void> insertProduit(ConnectionSettings settings) async {
     //String nom = IHMprincipale.saisieString();
     //String email = IHMprincipale.saisieString();
     //int age = IHMprincipale.saisieInt();
@@ -75,7 +80,7 @@ class IHMProduit {
     await Future.delayed(Duration(seconds: 1));
   }
 
-  static Future<void> updateProduit() async {
+  static Future<void> updateProduit(ConnectionSettings settings) async {
     print("Quelle Etudiant voulez vous mettre à jour ?");
     int id = IHMprincipale.saisieID();
     //if (await DBProduit.exist(id)) {
@@ -100,7 +105,7 @@ class IHMProduit {
     }
   }
 
-  static Future<void> deleteProduit() async {
+  static Future<void> deleteProduit(ConnectionSettings settings) async {
     print("Quelle Etudiant voulez vous supprimer ?");
     int id = IHMprincipale.saisieID();
     if (IHMprincipale.confirmation()) {
@@ -116,7 +121,7 @@ class IHMProduit {
     }
   }
 
-  static Future<void> deleteAllProduit() async {
+  static Future<void> deleteAllProduit(ConnectionSettings settings) async {
     if (IHMprincipale.confirmation()) {
       //DBEtudiant.deleteAllEtudiant();
       print("Tables supprimées.");
@@ -128,5 +133,35 @@ class IHMProduit {
       print("--------------------------------------------------");
       await Future.delayed(Duration(seconds: 1));
     }
+  }
+
+  static Future<void> selectProduit(ConnectionSettings settings) async {
+    print("Quelle Produit voulez vous afficher ?");
+    int id = IHMprincipale.saisieID();
+    Produit pro = await DBProduit.selectProduit(settings, id);
+    if (!pro.estNull()) {
+      IHMprincipale.afficherUneDonnee(pro);
+      print("Fin de l'opération.");
+      print("--------------------------------------------------");
+    } else {
+      print("Le Produit $id n'existe pas");
+      print("Fin de l'opération.");
+      print("--------------------------------------------------");
+    }
+    await Future.delayed(Duration(seconds: 1));
+  }
+
+  static Future<void> selectAllProduit(ConnectionSettings settings) async {
+    List<Produit> listePro = await DBProduit.selectAllProduit(settings);
+    if (listePro.isNotEmpty) {
+      IHMprincipale.afficherDesDonnees(listePro);
+      print("Fin de l'opération.");
+      print("--------------------------------------------------");
+    } else {
+      print("la table est vide");
+      print("Fin de l'opération.");
+      print("--------------------------------------------------");
+    }
+    IHMprincipale.wait();
   }
 }

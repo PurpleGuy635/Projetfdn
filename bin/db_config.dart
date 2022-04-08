@@ -4,7 +4,7 @@ import 'package:mysql1/mysql1.dart';
 class DBConfig {
   // permet la création des tables, en vérifiant si elles existes ou non
   // et créé les tables manquantes si besoin
-  static Future<void> createTables( settings) async {
+  static Future<void> createTables(settings) async {
     bool checkProduit = false;
     bool checkAuteur = false;
     bool checkEditeur = false;
@@ -28,15 +28,18 @@ class DBConfig {
           }
         }
         if (!checkProduit) {
-          requete = 'CREATE TABLE Produit (id int NOT NULL AUTO_INCREMENT PRIMARY KEY, name varchar(255), email varchar(255), age int);';
+          requete =
+              'CREATE TABLE Produit (id int NOT NULL AUTO_INCREMENT PRIMARY KEY, nom varchar(100), stock int, dateParution varchar(10), type varchar(30), prix int, idEditeur int);';
           await conn.query(requete);
         }
         if (!checkAuteur) {
-          requete = 'CREATE TABLE Auteur (id int NOT NULL AUTO_INCREMENT PRIMARY KEY, name varchar(255));';
+          requete =
+              'CREATE TABLE Auteur (id int NOT NULL AUTO_INCREMENT PRIMARY KEY, nom varchar(100), prenom varchar(100));';
           await conn.query(requete);
         }
-         if (!checkEditeur) {
-          requete = 'CREATE TABLE Editeur (id int NOT NULL AUTO_INCREMENT PRIMARY KEY, name varchar(255));';
+        if (!checkEditeur) {
+          requete =
+              'CREATE TABLE Editeur (id int NOT NULL AUTO_INCREMENT PRIMARY KEY, nom varchar(100), prenom varchar(100));';
           await conn.query(requete);
         }
       } catch (e) {
@@ -49,7 +52,7 @@ class DBConfig {
   }
 
   // retourne vrai si toute les tables sont créé, faux sinon
-  static Future<bool> checkTables( settings) async {
+  static Future<bool> checkTables(settings) async {
     bool checkAll = false;
     bool checkAuteur = false;
     bool checkProduit = false;
@@ -59,7 +62,7 @@ class DBConfig {
       String requete = "SHOW TABLES;";
       try {
         Results reponse = await conn.query(requete);
-        for (var rows in  reponse) {
+        for (var rows in reponse) {
           for (var fields in rows) {
             if (fields.toString() == "Produit") {
               checkProduit = true;
@@ -67,7 +70,7 @@ class DBConfig {
             if (fields.toString() == "Auteur") {
               checkAuteur = true;
             }
-             if (fields.toString() == "Editeur") {
+            if (fields.toString() == "Editeur") {
               checkEditeur = true;
             }
           }
@@ -87,7 +90,7 @@ class DBConfig {
   }
 
   // retourne la liste des noms des tables dans la BDD;
-  static Future<List<String>> selectTables( settings) async {
+  static Future<List<String>> selectTables(settings) async {
     List<String> listTable = [];
     try {
       MySqlConnection conn = await MySqlConnection.connect(settings);
@@ -110,7 +113,7 @@ class DBConfig {
   }
 
   // permet de supprimer une table via son nom passé en parametre, si elle existe dans la database
-  static Future<void> dropTable( settings, String table) async {
+  static Future<void> dropTable(settings, String table) async {
     try {
       MySqlConnection conn = await MySqlConnection.connect(settings);
       try {
@@ -163,8 +166,7 @@ class DBConfig {
   }
 }
 
-void log(String string) {
-}
+void log(String string) {}
 
 class MySqlConnection {
   static connect(settings) {}
