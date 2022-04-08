@@ -52,10 +52,10 @@ class IHMProduit {
       print("--------------------------------------------------");
 
       if (choix == 1) {
-        //await IHMEtudiants.selectEtudiant();
+        await IHMProduit.selectProduit(settings);
         await IHMProduit.selectProduit(settings);
       } else if (choix == 2) {
-        //await IHMEtudiants.selectAllEtudiants();
+        await IHMProduit.selectAllProduit(settings);
       }
     }
     print("Retour menu précédent.");
@@ -64,11 +64,11 @@ class IHMProduit {
   }
 
   static Future<void> insertProduit(ConnectionSettings settings) async {
-    //String nom = IHMprincipale.saisieString();
-    //String email = IHMprincipale.saisieString();
-    //int age = IHMprincipale.saisieInt();
+    String nom = IHMprincipale.saisieString("nom");
+    String email = IHMprincipale.saisieString("email");
+    int age = IHMprincipale.saisieInt();
     if (IHMprincipale.confirmation()) {
-      //await DBEtudiant.insertEtudiant(nom, email, age);
+      //await DBProduit.insertProduit(nom, email, age);
       print("Produit inséré dans la table.");
       print("--------------------------------------------------");
     } else {
